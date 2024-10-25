@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "stocks-telegram-bot"
+version = "0.1.0"
+description = ""
+authors = ["Samyar <samyar1380@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+redis = "^5.1.1"
+scheduler = "^0.8.7"
+requests = "^2.32.3"
+python-telegram-bot = {extras = ["job-queue"], version = "^21.6"}
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
