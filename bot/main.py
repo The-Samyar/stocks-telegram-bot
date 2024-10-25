@@ -58,6 +58,21 @@ async def quit_app(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
 
 
+async def send_alert(context: ContextTypes.DEFAULT_TYPE):
+    print("Sending alert")
+    redis_client = Redis(
+        host="localhost",
+        port=6380,
+        decode_responses=True,
+    )
+
+    # ----------------- alert sending section -----------------
+    chats = redis_client.keys("*")
+    for chat in chats:
+        print(f"Sending message to {chat}")
+        await context.bot.send_message(chat_id=chat, text="hello")
+
+
 def main():
     print("Running")
     app = Application.builder().token(TELEGRAM_TOKEN).build()
@@ -70,6 +85,8 @@ def main():
         ]
     )
 
+    job_queue: JobQueue = app.job_queue
+    job_queue.run_repeating(send_alert, 5)
 
     app.run_polling()
 
