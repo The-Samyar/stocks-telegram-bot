@@ -11,6 +11,7 @@ redis = "^5.1.1"
 scheduler = "^0.8.7"
 requests = "^2.32.3"
 python-telegram-bot = {extras = ["job-queue"], version = "^21.6"}
+python-dotenv = "^1.0.1"
 
 
 [build-system]
